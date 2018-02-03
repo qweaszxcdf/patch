@@ -24,4 +24,13 @@ build_script:
 
     appveyor PushArtifact aria2c.7z
 
+    rd /s /q aria2
+
+    set MSYSTEM=MINGW32
+
+    C:\msys64\usr\bin\bash -lc "cd \"$APPVEYOR_BUILD_FOLDER\" && exec ./build-aria2.sh"
+
+    7z a aria2c_x86.7z .\aria2\src\aria2c.exe
+
+    appveyor PushArtifact aria2c_x86.7z
 test: off
