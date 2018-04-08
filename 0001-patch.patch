@@ -73,7 +73,7 @@ index 40fc55f2..71f9cc0b 100644
 +      File::getCurrentDir() + (ipv6 ? "/.aria2/dht6.dat" : "/.aria2/dht.dat");
    if (!File(filename).exists()) {
 -    filename = getXDGDir("XDG_CACHE_HOME", getHomeDir() + "/.cache") +
-+    filename = getXDGDir("XDG_CACHE_HOME", File::getCurrentDir() + "/.cache") +
++    filename = getXDGDir("XDG_CACHE_HOME", File::getCurrentDir() + "/.aria2") +
 -               (ipv6 ? "/aria2/dht6.dat" : "/aria2/dht.dat");
 +               (ipv6 ? "/dht6.dat" : "/dht.dat");
    }
