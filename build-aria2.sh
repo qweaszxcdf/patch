@@ -60,7 +60,7 @@ cd ..
 rm -rf "expat-${expat_ver}"
 
 sqlite_ver=$(clean_html_index_sqlite "https://www.sqlite.org/download.html")
-[[ ! "$sqlite_ver" ]] && sqlite_ver="2018/sqlite-autoconf-3230100.tar.gz"
+[[ ! "$sqlite_ver" ]] && sqlite_ver="2018/sqlite-autoconf-3240000.tar.gz"
 sqlite_file=$(echo ${sqlite_ver} | grep -ioP "(sqlite-autoconf-\d+\.tar\.gz)")
 wget -c --no-check-certificate "https://www.sqlite.org/${sqlite_ver}"
 tar xf "${sqlite_file}"
@@ -79,7 +79,7 @@ rm -rf "${sqlite_name}"
 [[ ! "$cares_ver" ]] &&
     cares_ver="$(clean_html_index https://c-ares.haxx.se/)" &&
     cares_ver="$(get_last_version "$cares_ver" c-ares "1\.\d+\.\d")"
-cares_ver="${cares_ver:-1.13.0}"
+cares_ver="${cares_ver:-1.14.0}"
 echo "c-ares-${cares_ver}"
 wget -c --no-check-certificate "https://c-ares.haxx.se/download/c-ares-${cares_ver}.tar.gz"
 tar xf "c-ares-${cares_ver}.tar.gz"
@@ -117,6 +117,7 @@ rm -rf "libssh2-${ssh_ver}"
 
 git clone https://github.com/aria2/aria2 --depth=1 --config http.sslVerify=false
 cd aria2
+wget https://raw.githubusercontent.com/myfreeer/aria2-build-msys2/master/aria2-0005-option-add-option-to-retry-on-http-4xx.patch
 git am ../*.patch
 autoreconf -i
 ./configure \
