@@ -116,8 +116,8 @@ cd ..
 rm -rf "libssh2-${ssh_ver}"
 
 git clone https://github.com/aria2/aria2 --depth=1 --config http.sslVerify=false
-cd aria2
 wget https://raw.githubusercontent.com/myfreeer/aria2-build-msys2/master/aria2-0005-option-add-option-to-retry-on-http-4xx.patch
+cd aria2
 git am ../*.patch
 autoreconf -i
 ./configure \
