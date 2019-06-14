@@ -10,6 +10,8 @@ install:
     Update-AppveyorBuild @gitData
 build_script:
 - cmd: >-
+    C:\msys64\usr\bin\pacman -R --noconfirm mingw-w64-i686-gcc-ada mingw-w64-i686-gcc-objc mingw-w64-x86_64-gcc-ada mingw-w64-x86_64-gcc-objc
+
     C:\msys64\usr\bin\pacman -Syyuu --noconfirm --ask=20
     
     C:\msys64\usr\bin\pacman -Suu --noconfirm --ask=20
