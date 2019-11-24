@@ -12,4 +12,13 @@ jobs:
     - name: Build
       run: |
         bash ./build.sh
+    - name: release
+      continue-on-error: true
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "${{ github.sha }}"
+        prerelease: false
+        files: |
+            aria2/src/aria2c.exe
       
