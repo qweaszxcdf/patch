@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build
       run: |
+        ls
         bash ./build.sh
     - name: release
       continue-on-error: true
