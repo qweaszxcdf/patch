@@ -13,4 +13,5 @@ sed -i 's/apt-get/sudo\ apt-get/g' $OUTPUT
 sed -i 's/i686-w64-mingw32/x86_64-w64-mingw32/g' $OUTPUT
 sed -i 's/make install/make install \&\& cd ..\//g' $OUTPUT
 sed -i 's/cd aria2/cd aria2 \&\& git am  \.\.\/\*\.patch/g' $OUTPUT
-bash ./Dockerfile.sh
+chmod +x ./Dockerfile.sh
+./Dockerfile.sh
