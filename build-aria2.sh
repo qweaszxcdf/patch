@@ -53,7 +53,7 @@ get_last_version() {
 # expat
 expat_ver="$(clean_html_index https://sourceforge.net/projects/expat/files/expat/ 'expat/[0-9]+\.[0-9]+\.[0-9]+')"
 expat_ver="$(get_last_version "${expat_ver}" expat '2\.\d+\.\d+')"
-expat_ver="${expat_ver:-2.2.9}"
+expat_ver="${expat_ver:-2.4.1}"
 wget -c --no-check-certificate "https://downloads.sourceforge.net/project/expat/expat/${expat_ver}/expat-${expat_ver}.tar.bz2"
 tar xf "expat-${expat_ver}.tar.bz2"
 cd "expat-${expat_ver}"
@@ -88,7 +88,7 @@ rm -rf "${sqlite_name}"
 [[ ! "$cares_ver" ]] &&
     cares_ver="$(clean_html_index https://c-ares.haxx.se/)" &&
     cares_ver="$(get_last_version "$cares_ver" c-ares "1\.\d+\.\d")"
-cares_ver="${cares_ver:-1.16.1}"
+cares_ver="${cares_ver:-1.17.2}"
 echo "c-ares-${cares_ver}"
 wget -c --no-check-certificate "https://c-ares.haxx.se/download/c-ares-${cares_ver}.tar.gz"
 tar xf "c-ares-${cares_ver}.tar.gz"
