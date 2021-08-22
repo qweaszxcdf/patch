@@ -3,24 +3,21 @@ skip_tags: true
 install:
 - ps: >-
     $gitData = ConvertFrom-StringData (git log -1 --format=format:"commitId=%H%nmessage=%s%ncommitted=%aD" | out-string)
-
     if ($gitData['message'] -eq "") { $gitData['message'] = "No commit message available for $($gitData['commitid'])" }
-
     # View the data with Write-Output @gitData
-
     Update-AppveyorBuild @gitData
 build_script:
 - cmd: >-
     C:\msys64\usr\bin\pacman -S --noconfirm --needed --ask=20 base-devel git unzip zip tar
-
     set MSYSTEM=MINGW64
-
     C:\msys64\usr\bin\bash -lc "cd \"$APPVEYOR_BUILD_FOLDER\" && exec ./build-aria2.sh"
-
     7z a aria2c.7z .\aria2\src\aria2c.exe
-
     appveyor PushArtifact aria2c.7z
-
+    rd /s /q aria2
+    set MSYSTEM=MINGW32
+    C:\msys64\usr\bin\bash -lc "cd \"$APPVEYOR_BUILD_FOLDER\" && exec ./build-aria2.sh"
+    7z a aria2c_x86.7z .\aria2\src\aria2c.exe
+    appveyor PushArtifact aria2c_x86.7z
 test: off
 skip_commits:
   files:
